@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/972c459d7e.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Notatnik</title>
 </head>
@@ -13,10 +16,10 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <h1 class="header__title"><i class="fas fa-sticky-note"></i> My Notes</h1>
+            <h1 class="header__title"><i class="fas fa-sticky-note"></i> My<span class="header__span">Notes</span></h1>
             <div class="header__menu">
-                <button class="header__btn header_btn--add"><i class="fas fa-plus"></i> Dodaj</button>
-                <button class="header__btn header_btn--delete"><i class="fas fa-trash"></i> Usuń wszystkie</button>
+                <button class="btn header__btn header_btn--add"><i class="fas fa-plus"></i> Dodaj</button>
+                <button class="btn header__btn header_btn--delete"><i class="fas fa-trash"></i> Usuń wszystkie</button>
             </div>
         </header>
         <main class="notes">
@@ -30,25 +33,36 @@
                         aut necessitatibus eveniet esse eos perspiciatis recusandae commodi!</p>
                 </div>
             </div>
+            <div class="notes__area">
+                <div class="notes__header">
+                    <h3 class="notes__title">Notatka #2</h3>
+                    <button class="notes__btn"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="notes__body">
+                    <p class="notes__text">Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
         </main>
         <section class="panel-notes">
             <h2 class="panel-notes__header">Dodaj notatkę</h2>
-            <label for="category">Wybierz kategorię</label>
-            <select id="category">
+            <label for="category" class="panel-notes__label">Wybierz kategorię</label>
+            <select id="category" class="panel-notes__select">
                 <option value="0" selected disabled>-- wybierz kategorię --</option>
                 <option value="1">Praca</option>
                 <option value="1">Szkoła</option>
                 <option value="1">Zakupy</option>
             </select>
-            <label for="text">Treść notatki</label>
-            <textarea id="text"></textarea>
+            <label for="text" class="panel-notes__label">Treść notatki</label>
+            <textarea id="text" class="panel-notes__textarea"></textarea>
             <p class="panel-notes__error">Uzupełnij wszystkei pola</p>
             <div class="panel-notes__buttons">
-                <button class="panel-notes__btn panel-notes__btn--save"><i class="fas fa-save"></i> Zapisz</button>
-                <button class="panel-notes__btn panel-notes__btn--cancel"><i class="fas fa-times"></i> Anuluj</button>
+                <button class="btn panel-notes__btn panel-notes__btn--save"><i class="fas fa-save"></i> Zapisz</button>
+                <button class="btn panel-notes__btn panel-notes__btn--cancel"><i class="fas fa-times"></i> Anuluj</button>
             </div>
         </section>
     </div>
+
+    <script src="main.js"></script>
 </body>
 
 </html>
