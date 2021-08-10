@@ -1,11 +1,7 @@
-const wrapper = document.querySelector('.wrapper');
 const addBtn = document.querySelector('.header_btn--add');
-const deleteAllNotesBtn = document.querySelectorAll('.header_btn--delete');
+const deleteAllNotesBtn = document.querySelector('.header_btn--delete');
 const notes = document.querySelector('.notes');
-const notesArea = document.querySelector('.notes__area');
-const notesTemp = document.querySelector('.notes__temp');
-const notesTitle = document.querySelector('.notes__title');
-const notesDelete = document.querySelector('.notes__btn');
+const notesTemplate = document.querySelector('.notes__template');
 const notesText = document.querySelector('.notes__text');
 const panelNotes = document.querySelector('.panel-notes');
 const panelNoteSelect = document.querySelector('.panel-notes__select');
@@ -28,35 +24,32 @@ const cancelNotes = () => {
 }
 
 const saveNote = () => {
-    const note = notesArea.content.cloneNode(true);
-    note.querySelector('.notes__title').textContent = 'Notatka ' + num;
-    note.querySelector('.notes__text').textContent = panelNoteTextarea.value;
-    notes.appendChild(note);
-    num++;
-    console.log(note);
-    cancelNotes();
+    if (panelNoteTextarea.value === "" || panelNoteSelect.selectedIndex === 0) {
+        panelNoteError.style.visibility = 'visible';
+    } else {
+        const note = notesTemplate.content.cloneNode(true);
+        note.querySelector('.notes__area').setAttribute('id', num)
+        note.querySelector('.notes__btn').setAttribute('onclick', `deleteNote(${num})`)
+        note.querySelector('.notes__title').textContent = 'Notatka ' + num;
+        note.querySelector('.notes__text').textContent = panelNoteTextarea.value;
+        notes.appendChild(note);
+        num++;
+        cancelNotes();
+    }
+
 }
 
-const checkSelect = () => {
-    if(panelNoteSelect.selectedIndex === 1){
-
-    }
-    else if(panelNoteSelect.selectedIndex === 2){
-
-    }
-    else if(panelNoteSelect.selectedIndex === 3){
-
-    }
-    else{
-
-    }
+const deleteNote = id => {
+    const noteToDelete = document.getElementById(id);
+    notes.removeChild(noteToDelete);
 }
 
-// const deleteNote = () => {
+const deleteAllNotes = () =>{
+    const allNotes = document.querySelector('.notes__area');
+    allNotes.textContent = '';
+}
 
-// }
-
-// notesDelete.addEventListener('click', deleteNote);
+deleteAllNotesBtn.addEventListener('click', deleteAllNotes);
 panelNoteSaveBtn.addEventListener('click', saveNote);
 panelNoteCancelBtn.addEventListener('click', cancelNotes);
 addBtn.addEventListener('click', addNote);
