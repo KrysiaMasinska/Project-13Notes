@@ -28,10 +28,14 @@ const saveNote = () => {
         panelNoteError.style.visibility = 'visible';
     } else {
         const note = notesTemplate.content.cloneNode(true);
+        let textArea = panelNoteTextarea.value;
+        if(textArea.length > 21){
+            textArea.value + '\r\n';
+        }
         note.querySelector('.notes__area').setAttribute('id', num)
         note.querySelector('.notes__btn').setAttribute('onclick', `deleteNote(${num})`)
         note.querySelector('.notes__title').textContent = 'Notatka ' + num;
-        note.querySelector('.notes__text').textContent = panelNoteTextarea.value;
+        note.querySelector('.notes__text').textContent = textArea;
         notes.appendChild(note);
         num++;
         cancelNotes();
