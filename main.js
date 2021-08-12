@@ -29,9 +29,6 @@ const saveNote = () => {
     } else {
         const note = notesTemplate.content.cloneNode(true);
         let textArea = panelNoteTextarea.value;
-        if(textArea.length > 21){
-            textArea.value + '\r\n';
-        }
         note.querySelector('.notes__area').setAttribute('id', num)
         note.querySelector('.notes__btn').setAttribute('onclick', `deleteNote(${num})`)
         note.querySelector('.notes__title').textContent = 'Notatka ' + num;
@@ -49,8 +46,10 @@ const deleteNote = id => {
 }
 
 const deleteAllNotes = () =>{
-    const allNotes = document.querySelector('.notes__area');
-    allNotes.textContent = '';
+    const allNotes = document.querySelectorAll('.notes__area');
+    allNotes.forEach(element => {
+        element.textContent = '';   
+    });
 }
 
 deleteAllNotesBtn.addEventListener('click', deleteAllNotes);
